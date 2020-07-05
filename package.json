@@ -1,0 +1,14 @@
+{
+  "name": "netlify-spaces",
+  "version": "1.0.0",
+  "description": "Uses Netlify for auth, and DO Spaces for storage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.709.0"
+  }
+}
