@@ -4,7 +4,7 @@ exports.handler = function(event, context, callback) {
     // const { identity, user } = context.clientContext;
 
     // Configure client for use with Spaces
-    const spacesEndpoint = new AWS.Endpoint(S3_ENDPOINT);
+    const spacesEndpoint = new AWS.Endpoint(process.env.S3_ENDPOINT);
     const s3 = new AWS.S3({
         endpoint: spacesEndpoint,
         accessKeyId: process.env.S3_KEY,
