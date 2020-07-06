@@ -28,7 +28,7 @@ exports.handler = function(event, context, callback) {
             Body: JSON.stringify(jsondata.data),
             Bucket: "netlify-spaces",
             Key: "data.json",
-            Acl: "public-read",
+            ACL: "public-read",
         };
 
         s3.putObject(params, function(err, data) {
