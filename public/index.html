@@ -30,8 +30,8 @@
 
 
         function save() {
-            const token = await netlifyIdentity.currentUser().jwt();
-            let user = await netlifyIdentity.currentUser();
+            const token = netlifyIdentity.currentUser().jwt();
+            let user = netlifyIdentity.currentUser();
 
             let data = {
                 title: "hello world"
