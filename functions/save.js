@@ -25,9 +25,10 @@ exports.handler = function(event, context, callback) {
 
         // Add a file to a Space
         var params = {
-            Body: JSON.stringify(jsondata),
+            Body: JSON.stringify(jsondata.data),
             Bucket: "netlify-spaces",
             Key: "data.json",
+            Acl: "public-read",
         };
 
         s3.putObject(params, function(err, data) {
