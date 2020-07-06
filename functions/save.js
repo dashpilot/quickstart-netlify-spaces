@@ -23,14 +23,29 @@ exports.handler = function(event, context, callback) {
             secretAccessKey: process.env.S3_SECRET,
         });
 
-        // Add a file to a Space
-        var params = {
-            Body: JSON.stringify(jsondata.data),
-            Bucket: "netlify-spaces",
-            Key: "data.json",
-            ContentType: "application/json",
-            ACL: "public-read",
-        };
+        if (jsondata.type == "json") {
+            let filename = "data.json";
+            var params = {
+                Body: JSON.stringify(jsondata.data),
+                Bucket: "netlify-spaces",
+                Key: filename,
+                ContentType: "application/json",
+                ACL: "public-read",
+            };
+        } else {
+            let filename =
+                "img/" +
+                Math.random().toString(36).substring(2, 15) +
+                Math.random().toString(36).substring(2, 15) +
+                ".jpg";
+            var params = {
+                Body: JSON.stringify(jsondata.data),
+                Bucket: "netlify-spaces",
+                Key: filename,
+                ContentType: "image/jpeg",
+                ACL: "public-read",
+            };
+        }
 
         s3.putObject(params, function(err, data) {
             if (err) console.log(err, err.stack);
@@ -39,7 +54,7 @@ exports.handler = function(event, context, callback) {
 
         callback(null, {
             statusCode: 200,
-            body: JSON.stringify({ foo: "bar" }),
+            body: JSON.stringify({ filename: filename }),
         });
     } catch (error) {
         return {
