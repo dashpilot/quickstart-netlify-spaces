@@ -1,10 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
+    <meta charset="UTF-8" />
+    <title>Untitled Document</title>
+
+    <!-- Netlify Identity Widget -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
+    <div class="container text-center">
+        <button class="btn btn-outline-dark" id="save" style="display: none;">
+        Save
+      </button>
+    </div>
+    <div class="container" id="result"></div>
+
+    <script>
+        const saveBut = document.querySelector('#save');
+
+        netlifyIdentity.on("login", function(user) {
+            console.log(user);
+            saveBut.style.display = 'block';
+            saveBut.addEventListener('click', function() {
+                save();
+            })
+        });
+
+
+        function save() {
+            const token = await netlifyIdentity.currentUser().jwt();
+            let user = await netlifyIdentity.currentUser();
+
+            let data = {
+                title: "hello world"
+            }
+
+            const response = await fetch("/.netlify/functions/save", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                method: "post",
+                body: JSON.stringify({
+                    data: data,
+                }),
+            }).then((res) => res.text());
+        }
+    </script>
 </body>
+
 </html>
