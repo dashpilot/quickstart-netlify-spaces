@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <title>Untitled Document</title>
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
     <!-- Netlify Identity Widget -->
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -44,7 +46,9 @@
                 body: JSON.stringify({
                     data: data,
                 }),
-            }).then((res) => res.text());
+            }).then(function(res) {
+                document.querySelector("#result").innerHTML = "Succes!";
+            });
         }
     </script>
 </body>

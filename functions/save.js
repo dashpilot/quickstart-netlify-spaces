@@ -28,6 +28,7 @@ exports.handler = function(event, context, callback) {
             Body: JSON.stringify(jsondata.data),
             Bucket: "netlify-spaces",
             Key: "data.json",
+            ContentType: "application/json",
             ACL: "public-read",
         };
 
