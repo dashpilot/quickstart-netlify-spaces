@@ -13,6 +13,6 @@ Deploy this repo to Netlify using the 'Deploy to Netlify'-button below:
 
 In Netlify, go to settings > environment and create the following environment variables for your Amazon S3 or Digitalocean Spaces settings
 
-S3_ENDPOINT: your S3/Spaces endpoint (e.g ams3.digitaloceanspaces.com)\
-S3_KEY: your S3/Spaces key\
-S3_SECRET: your S3/Spaces secret\
+`S3_ENDPOINT`: your S3/Spaces endpoint (e.g ams3.digitaloceanspaces.com)\
+`S3_KEY`: your S3/Spaces key\
+`S3_SECRET`: your S3/Spaces secret
