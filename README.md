@@ -16,5 +16,5 @@ In Netlify, go to settings > environment and create the following environment va
 
 `S3_ENDPOINT`: your S3/Spaces endpoint (e.g ams3.digitaloceanspaces.com)\
 `S3_KEY`: your S3/Spaces key\
-`S3_SECRET`: your S3/Spaces secret
+`S3_SECRET`: your S3/Spaces secret\
 `S3_BUCKET`: your S3/Spaces bucket
