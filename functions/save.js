@@ -27,7 +27,7 @@ exports.handler = function(event, context, callback) {
             let filename = "data.json";
             var params = {
                 Body: JSON.stringify(jsondata.data),
-                Bucket: "netlify-spaces",
+                Bucket: process.env.S3_BUCKET,
                 Key: filename,
                 ContentType: "application/json",
                 ACL: "public-read",
@@ -40,7 +40,7 @@ exports.handler = function(event, context, callback) {
                 ".jpg";
             var params = {
                 Body: JSON.stringify(jsondata.data),
-                Bucket: "netlify-spaces",
+                Bucket: process.env.S3_BUCKET,
                 Key: filename,
                 ContentType: "image/jpeg",
                 ACL: "public-read",
