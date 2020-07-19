@@ -1,5 +1,5 @@
 # netlify-spaces
-Netlify functions for working with S3/DO Spaces
+Netlify functions for working with Amazon S3/Digitalocean Spaces
 
 ## How To:
 
