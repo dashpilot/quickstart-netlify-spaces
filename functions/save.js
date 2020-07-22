@@ -61,7 +61,7 @@ exports.handler = function(event, context, callback) {
 
             callback(null, {
                 statusCode: 200,
-                body: JSON.stringify({ status: "File sucessfully uploaded" }),
+                body: "File sucessfully uploaded",
             });
         });
     } catch (error) {
