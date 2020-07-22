@@ -33,15 +33,22 @@ exports.handler = function(event, context, callback) {
                 ACL: "public-read",
             };
         } else {
+            let base64 = jsondata.data;
+            let base64data = new Buffer.from(
+                base64.replace(/^data:image\/\w+;base64,/, ""),
+                "base64"
+            );
+
             let filename =
                 "img/" +
                 Math.random().toString(36).substring(2, 15) +
                 Math.random().toString(36).substring(2, 15) +
                 ".jpg";
             var params = {
-                Body: jsondata.data,
+                Body: base64data,
                 Bucket: process.env.S3_BUCKET,
                 Key: filename,
+                ContentEncoding: "base64",
                 ContentType: "image/jpeg",
                 ACL: "public-read",
             };
