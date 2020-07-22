@@ -32,7 +32,7 @@ exports.handler = function(event, context, callback) {
                 ContentType: "application/json",
                 ACL: "public-read",
             };
-        } else {
+        } else if (jsondata.type == "image") {
             let base64 = jsondata.data;
             let base64data = new Buffer.from(
                 base64.replace(/^data:image\/\w+;base64,/, ""),
