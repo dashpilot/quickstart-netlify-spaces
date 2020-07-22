@@ -9,15 +9,22 @@
 
     <!-- Netlify Identity Widget -->
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script type="text/javascript" src="js/ImageTools.js"></script>
 </head>
 
 <body>
     <div class="container text-center mt-5">
+        <h2>Json data example</h2>
         <button class="btn btn-outline-dark" id="save" style="display: none;">
         Save
       </button>
     </div>
     <div class="container" id="result"></div>
+    <br /><br />
+    <div class="container">
+        <h2>Image Example</h2>
+        <input type="file" id="select" />
+    </div>
 
     <script>
         const saveBut = document.querySelector("#save");
@@ -26,17 +33,17 @@
             console.log(user);
             saveBut.style.display = "block";
             saveBut.addEventListener("click", function() {
-                save();
+                let data = {
+                    title: "Hello world. This is some text.",
+                };
+                let type = "json";
+                save(data, type);
             });
         });
 
-        async function save() {
+        async function save(data, type) {
             const token = await netlifyIdentity.currentUser().jwt();
             let user = await netlifyIdentity.currentUser();
-
-            let data = {
-                title: "Hello world. This is some text.",
-            };
 
             const response = await fetch("/.netlify/functions/save", {
                 headers: {
@@ -45,12 +52,42 @@
                 method: "post",
                 body: JSON.stringify({
                     data: data,
-                    type: "json",
+                    type: type,
                 }),
             }).then(function(res) {
                 document.querySelector("#result").innerHTML = "Succes!";
             });
         }
+
+        document.getElementById("select").onchange = function(evt) {
+            ImageTools.resize(
+                this.files[0], {
+                    width: 500, // maximum width
+                    height: 500, // maximum height
+                },
+                function(blob, didItResize) {
+                    // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+
+                    // you can also now upload this blob using an XHR.
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+
+                        let name = Math.random().toString(36).substr(2, 9) + ".jpg";
+                        let path = "img/" + name;
+
+                        // first, temporarily show the base64 data
+                        //document.querySelector(".current-item").src = base64data;
+
+                        // save the image
+                        var data = base64data.replace(/^data:image\/\w+;base64,/, "");
+                        let type = "image";
+                        save(data, type);
+                    };
+                }
+            );
+        };
     </script>
 </body>
 
