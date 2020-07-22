@@ -39,7 +39,6 @@ exports.handler = function(event, context, callback) {
                 "base64"
             );
             let imgtype = base64.split(";")[0].split("/")[1];
-
             let filename =
                 "img/" +
                 Math.random().toString(36).substring(2, 15) +
