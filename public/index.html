@@ -13,17 +13,22 @@
 </head>
 
 <body>
-    <div class="container text-center mt-5">
+    <div class="container mt-5">
         <h2>Json data example</h2>
+        <input type="text" id="text" class="form-control" />
         <button class="btn btn-outline-dark" id="save" style="display: none;">
         Save
       </button>
     </div>
-    <div class="container" id="result"></div>
-    <br /><br />
-    <div class="container">
+
+    <div class="container mt-5">
         <h2>Image Example</h2>
         <input type="file" id="select" />
+    </div>
+
+    <div class="container mt-5">
+        <h2>Result:</h2>
+        <div id="result"></div>
     </div>
 
     <script>
@@ -33,8 +38,9 @@
             console.log(user);
             saveBut.style.display = "block";
             saveBut.addEventListener("click", function() {
+                let mytext = document.querySelector("#text").value;
                 let data = {
-                    title: "Hello world. This is some text.",
+                    text: mytext,
                 };
                 let type = "json";
                 save(data, type);
