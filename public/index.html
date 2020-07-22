@@ -65,9 +65,10 @@
                 })
                 .then((response) => response.json())
                 .then(function(res) {
+                    console.log(res);
                     document.querySelector(
                         "#result"
-                    ).innerHTML = `Result: <b>${res.body}</b>`;
+                    ).innerHTML = `Result: <b>${res.body.status}</b>`;
                 });
         }
 
