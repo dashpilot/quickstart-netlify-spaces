@@ -43,7 +43,6 @@ exports.handler = function(event, context, callback) {
                 Bucket: process.env.S3_BUCKET,
                 Key: filename,
                 ContentType: "image/jpeg",
-                ContentEncoding: "base64",
                 ACL: "public-read",
             };
         }
