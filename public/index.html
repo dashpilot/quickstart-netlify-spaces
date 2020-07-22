@@ -16,7 +16,7 @@
     <div class="container mt-5">
         <h2>Json data example</h2>
         <input type="text" id="text" class="form-control" />
-        <button class="btn btn-outline-dark" id="save" style="display: none;">
+        <button class="btn btn-outline-dark mt-3" id="save" style="display: none;">
         Save
       </button>
     </div>
@@ -24,6 +24,8 @@
     <div class="container mt-5">
         <h2>Image Example</h2>
         <input type="file" id="select" />
+        <br />
+        <img id="image" />
     </div>
 
     <div class="container mt-5">
@@ -61,7 +63,9 @@
                     type: type,
                 }),
             }).then(function(res) {
-                document.querySelector("#result").innerHTML = "Succes!";
+                document.querySelector(
+                    "#result"
+                ).innerHTML = `Succesfully uploaded <b>${type}</b>!`;
             });
         }
 
@@ -84,7 +88,7 @@
                         let path = "img/" + name;
 
                         // first, temporarily show the base64 data
-                        //document.querySelector(".current-item").src = base64data;
+                        document.querySelector("#image").src = base64data;
 
                         // save the image
                         var data = base64data.replace(/^data:image\/\w+;base64,/, "");
