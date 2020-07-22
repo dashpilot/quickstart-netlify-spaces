@@ -38,18 +38,20 @@ exports.handler = function(event, context, callback) {
                 base64.replace(/^data:image\/\w+;base64,/, ""),
                 "base64"
             );
+            let imgtype = base64.split(";")[0].split("/")[1];
 
             let filename =
                 "img/" +
                 Math.random().toString(36).substring(2, 15) +
                 Math.random().toString(36).substring(2, 15) +
-                ".jpg";
+                "." +
+                imgtype;
             var params = {
                 Body: base64data,
                 Bucket: process.env.S3_BUCKET,
                 Key: filename,
                 ContentEncoding: "base64",
-                ContentType: "image/jpeg",
+                ContentType: `image/${imgtype}`,
                 ACL: "public-read",
             };
         }
