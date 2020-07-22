@@ -58,11 +58,11 @@ exports.handler = function(event, context, callback) {
         s3.putObject(params, function(err, data) {
             if (err) console.log(err, err.stack);
             else console.log(data);
-        });
 
-        callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({ filename: filename }),
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify({ filename: filename }),
+            });
         });
     } catch (error) {
         return {
