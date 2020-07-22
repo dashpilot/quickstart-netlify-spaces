@@ -54,19 +54,21 @@
             let user = await netlifyIdentity.currentUser();
 
             const response = await fetch("/.netlify/functions/save", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                method: "post",
-                body: JSON.stringify({
-                    data: data,
-                    type: type,
-                }),
-            }).then(function(res) {
-                document.querySelector(
-                    "#result"
-                ).innerHTML = `Succesfully uploaded <b>${type}</b>!`;
-            });
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    method: "post",
+                    body: JSON.stringify({
+                        data: data,
+                        type: type,
+                    }),
+                })
+                .then((response) => response.json())
+                .then(function(res) {
+                    document.querySelector(
+                        "#result"
+                    ).innerHTML = `Result: <b>${res.body}</b>`;
+                });
         }
 
         document.getElementById("select").onchange = function(evt) {
