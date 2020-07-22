@@ -39,10 +39,11 @@ exports.handler = function(event, context, callback) {
                 Math.random().toString(36).substring(2, 15) +
                 ".jpg";
             var params = {
-                Body: JSON.stringify(jsondata.data),
+                Body: jsondata.data,
                 Bucket: process.env.S3_BUCKET,
                 Key: filename,
                 ContentType: "image/jpeg",
+                ContentEncoding: "base64",
                 ACL: "public-read",
             };
         }
