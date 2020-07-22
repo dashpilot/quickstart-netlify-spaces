@@ -1,6 +1,6 @@
 # netlify-spaces
 
-Netlify functions for working with Amazon S3/Digitalocean Spaces
+Netlify functions for working with Amazon S3/Digitalocean Spaces. It uses Netlify Identity for authentication, so only logged-in users can make requests to S3/Spaces.
 
 ## How To:
 
@@ -18,3 +18,11 @@ In Netlify, go to settings > environment and create the following environment va
 `S3_KEY`: your S3/Spaces key\
 `S3_SECRET`: your S3/Spaces secret\
 `S3_BUCKET`: your S3/Spaces bucket
+
+### 3. Enable Netlify Identity and log in
+In Netlify, go to 'Identity' and press 'Enable Identity'\
+Log in to your website via /login\
+After login, you'll be redirected to the homepage, where you can test the integration with S3/Spaces
+
+### 4. Press the :star: button
+Don't forget to press the :star: button to let me know I should continue improving this project
