@@ -63,7 +63,7 @@
                         type: type,
                     }),
                 })
-                .then((response) => response.json())
+                .then((response) => response.text())
                 .then(function(res) {
                     console.log(res);
                     document.querySelector(
